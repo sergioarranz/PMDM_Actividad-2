@@ -13,6 +13,7 @@ public class RegisterFragment extends Fragment {
 
 class RegisterFragmentEvents implements View.OnClickListener {
 
+    @Override
     public void onClick(View view) {
 
     }

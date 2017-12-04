@@ -5,5 +5,5 @@ package com.utad.sergio.milib.fragments;
  */
 
 public interface RegisterFragmentListener {
-
+    public void OnRegClicked();
 }
