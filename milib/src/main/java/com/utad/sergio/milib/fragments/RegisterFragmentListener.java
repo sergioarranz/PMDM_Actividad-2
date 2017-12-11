@@ -1,9 +1,10 @@
 package com.utad.sergio.milib.fragments;
 
 /**
- * Created by sergio on 30/11/17.
+ * Created by sergio on 11/12/17.
  */
 
 public interface RegisterFragmentListener {
-    public void OnRegClicked();
+    public void onRegClicked();
+    public void onBackClicked();
 }
