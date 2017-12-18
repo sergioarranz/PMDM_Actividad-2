@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public LoginFragment loginFragment;
     public RegisterFragment registerFragment;
+    public FireBaseAdmin firebaseAdmin;
     public MeFragment meFragment;
     private MainActivityEvents mainActivityEvents;
 
@@ -28,15 +29,20 @@ public class MainActivity extends AppCompatActivity {
         meFragment = (MeFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMe);
 
         MainActivityEvents mainActivityEvents = new MainActivityEvents(this);
+        firebaseAdmin=new FireBaseAdmin();
 
         loginFragment.setLoginFragmentListener(mainActivityEvents);
         registerFragment.setRegisterFragmentListener(mainActivityEvents);
+        firebaseAdmin.setFirebaseAdminListener(mainActivityEvents);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.show(loginFragment);
         transaction.hide(registerFragment);
         transaction.hide(meFragment);
         transaction.commit();
+
+
+
     }
 
     //TODO implementación Setters y Getters de MainActivityEvents ¿?
