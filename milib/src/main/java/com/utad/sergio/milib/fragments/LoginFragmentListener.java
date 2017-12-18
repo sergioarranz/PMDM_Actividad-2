@@ -5,6 +5,6 @@ package com.utad.sergio.milib.fragments;
  */
 
 public interface LoginFragmentListener {
-    public void onLoginClicked();
-    public void onRegFragmentClicked();
+    public void loginFragmentLogBtnClicked(String sUser,String sPass);
+    public void loginFragmentRegBtnClicked();
 }

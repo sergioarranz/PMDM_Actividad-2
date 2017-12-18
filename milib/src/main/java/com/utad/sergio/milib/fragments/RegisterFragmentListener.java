@@ -5,6 +5,6 @@ package com.utad.sergio.milib.fragments;
  */
 
 public interface RegisterFragmentListener {
-    public void onRegClicked();
-    public void onBackClicked();
+    public void regFragmentBtnAccClicked();
+    public void regFragmentBtnCancelClicked();
 }

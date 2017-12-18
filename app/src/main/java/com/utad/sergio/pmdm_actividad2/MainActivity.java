@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         registerFragment = (RegisterFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentReg);
         meFragment = (MeFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMe);
 
-        loginFragment.setLoginFragmentListener(this.mainActivityEvents);
-        registerFragment.setRegisterFragmentListener(this.mainActivityEvents);
+        MainActivityEvents mainActivityEvents = new MainActivityEvents(this);
+
+        loginFragment.setLoginFragmentListener(mainActivityEvents);
+        registerFragment.setRegisterFragmentListener(mainActivityEvents);
 
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.show(loginFragment);
@@ -48,25 +50,25 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
 
     // Login Firebase
     @Override
-    public void onLoginClicked() {
+    public void loginFragmentLogBtnClicked(String sUser,String sPass) {
 
     }
 
     // Transaction Login -> Register
     @Override
-    public void onRegFragmentClicked() {
+    public void loginFragmentRegBtnClicked() {
 
     }
 
     // Register & Login Firebase
     @Override
-    public void onRegClicked() {
+    public void regFragmentBtnAccClicked() {
 
     }
 
     // Transaction Register -> Login (return)
     @Override
-    public void onBackClicked() {
+    public void regFragmentBtnCancelClicked() {
 
     }
 }

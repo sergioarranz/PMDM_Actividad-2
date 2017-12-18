@@ -58,6 +58,14 @@ class LoginFragmentEvents implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        if(view.getId()==this.loginFragment.btnLogin.getId()){
 
+            this.loginFragment.loginFragmentListener.loginFragmentLogBtnClicked(
+                    this.loginFragment.etUsername.getText().toString(),
+                    this.loginFragment.etPassword.getText().toString());
+
+        } else if(view.getId()==this.loginFragment.btnRegister.getId()){
+            this.loginFragment.loginFragmentListener.loginFragmentRegBtnClicked();
+        }
     }
 }
