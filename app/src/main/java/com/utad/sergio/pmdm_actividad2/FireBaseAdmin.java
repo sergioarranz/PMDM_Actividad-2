@@ -32,11 +32,11 @@ public class FireBaseAdmin {
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("FirebaseAdmin", "createUserWithEmail:onComplete:" + task.isSuccessful());
+                        Log.v("FirebaseAdmin", "createUserWithEmail:onComplete:" + task.isSuccessful());
                         if (task.isSuccessful()) {
-
+                            firebaseAdminListener.firebaseAdmin_RegisterOK(true);
                         } else {
-
+                            firebaseAdminListener.firebaseAdmin_RegisterOK(false);
                         }
                     }
                 });

@@ -4,6 +4,7 @@ package com.utad.sergio.pmdm_actividad2;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.utad.sergio.milib.fragments.MeFragment;
 import com.utad.sergio.milib.fragments.LoginFragment;
@@ -73,8 +74,8 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
 
     // Register & Login Firebase
     @Override
-    public void regFragmentBtnAccClicked() {
-
+    public void regFragmentBtnAccClicked(String sUser,String sPass) {
+        mainActivity.firebaseAdmin.registerUser(sUser,sPass,mainActivity);
     }
 
     // Transaction Register -> Login (return)
@@ -85,6 +86,11 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
         transaction.hide(mainActivity.registerFragment);
         transaction.hide(mainActivity.meFragment);
         transaction.commit();
+    }
+
+    @Override
+    public void firebaseAdmin_RegisterOK(boolean blOk) {
+        Log.v("MAINACTIVITYEVENTS", "RESULTADO DE REGISTRO "+blOk);
     }
 }
 
