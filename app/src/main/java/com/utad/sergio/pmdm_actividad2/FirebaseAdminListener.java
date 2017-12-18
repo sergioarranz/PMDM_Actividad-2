@@ -7,4 +7,5 @@ package com.utad.sergio.pmdm_actividad2;
 public interface FirebaseAdminListener {
 
     public void firebaseAdmin_RegisterOK(boolean blOk);
+    public void firebaseAdmin_LoginOK(boolean blOk);
 }

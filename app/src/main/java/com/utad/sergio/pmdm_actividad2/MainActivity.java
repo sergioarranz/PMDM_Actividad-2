@@ -59,7 +59,7 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
     // Login Firebase
     @Override
     public void loginFragmentLogBtnClicked(String sUser,String sPass) {
-
+        mainActivity.firebaseAdmin.loginUser(sUser,sPass,mainActivity);
     }
 
     // Transaction Login -> Register
@@ -91,6 +91,17 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
     @Override
     public void firebaseAdmin_RegisterOK(boolean blOk) {
         Log.v("MAINACTIVITYEVENTS", "RESULTADO DE REGISTRO "+blOk);
+        if(blOk){
+
+        }
+    }
+
+    @Override
+    public void firebaseAdmin_LoginOK(boolean blOk) {
+        Log.v("MAINACTIVITYEVENTS", "RESULTADO DE LOGIN "+blOk);
+        if(blOk){
+
+        }
     }
 }
 
