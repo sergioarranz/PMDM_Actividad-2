@@ -19,7 +19,6 @@ public class FireBaseAdmin {
     private FirebaseAuth mAuth;
     public FireBaseAdminListener listener;
     public FirebaseUser user;
-    //private FirebaseAuth.AuthStateListener mAuthListener;
 
     public FireBaseAdmin(){
         mAuth = FirebaseAuth.getInstance();
