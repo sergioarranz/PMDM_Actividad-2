@@ -6,6 +6,6 @@ package fragments;
 
 public interface RegisterFragmentListener {
 
-    public void OnRegisterFragmentBtnAccClicked();
+    public void OnRegisterFragmentBtnAccClicked(String sUser,String sPass);
     public void OnRegisterFragmentBtnCancelClicked();
 }

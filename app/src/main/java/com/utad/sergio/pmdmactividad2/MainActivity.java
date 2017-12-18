@@ -1,8 +1,10 @@
 package com.utad.sergio.pmdmactividad2;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import fragments.LoginFragment;
 import fragments.LoginFragmentListener;
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public LoginFragment loginFragment;
     public RegisterFragment registerFragment;
+    public FireBaseAdmin fireBaseAdmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +26,12 @@ public class MainActivity extends AppCompatActivity {
         registerFragment = (RegisterFragment)getSupportFragmentManager().findFragmentById(R.id.fragmentRegister);
         MainActivityEvents mainActivityEvents=new MainActivityEvents(this); // Inicialización del gestor de eventos
 
+        fireBaseAdmin=new FireBaseAdmin();
+
         //Definimos a través de setters el listener de los fragments
         loginFragment.setListener(mainActivityEvents);
         registerFragment.setListener(mainActivityEvents);
+        fireBaseAdmin.setListener(mainActivityEvents);
 
         // Transición para mostrar y ocultar fragments
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -33,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         transaction.hide(registerFragment);
         transaction.commit();
 
+
+
+
         }
     }
 
-class MainActivityEvents implements LoginFragmentListener, RegisterFragmentListener{
+class MainActivityEvents implements LoginFragmentListener, RegisterFragmentListener, FireBaseAdminListener{
     MainActivity mainActivity;
 
     public MainActivityEvents(MainActivity mainActivity){
@@ -45,7 +54,7 @@ class MainActivityEvents implements LoginFragmentListener, RegisterFragmentListe
 
     @Override
     public void OnLogFragmentBtnClicked(String sUser,String sPass) {
-
+        mainActivity.fireBaseAdmin.UserLog(sUser,sPass,mainActivity);
     }
 
     @Override
@@ -57,7 +66,8 @@ class MainActivityEvents implements LoginFragmentListener, RegisterFragmentListe
     }
 
     @Override
-    public void OnRegisterFragmentBtnAccClicked() {
+    public void OnRegisterFragmentBtnAccClicked(String sUser,String sPass) {
+        mainActivity.fireBaseAdmin.UserReg(sUser,sPass,mainActivity);
 
     }
 
@@ -67,5 +77,28 @@ class MainActivityEvents implements LoginFragmentListener, RegisterFragmentListe
         transaction.show(mainActivity.loginFragment);
         transaction.hide(mainActivity.registerFragment);
         transaction.commit();
+    }
+
+    @Override
+    public void fireBaseAdmin_RegisterOK(boolean blOK) {
+        Log.v("MAINACTIVITYEVENTS", "RESULTADO DE REGISTER"+ blOK);
+        if(blOK){
+            Intent intent = new Intent(mainActivity,SecondActivity.class);
+            mainActivity.startActivity(intent);
+            mainActivity.finish();
+        } else {
+            
+        }
+    }
+
+    @Override
+    public void fireBaseAdmin_LoginOK(boolean blOK) {
+        if(blOK){
+            Intent intent = new Intent(mainActivity,SecondActivity.class);
+            mainActivity.startActivity(intent);
+            mainActivity.finish();
+        } else {
+
+        }
     }
 }
