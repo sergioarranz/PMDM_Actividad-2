@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO implementación Setters y Getters de MainActivityEvents ¿?
 }
 
-class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListener {
+class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListener,FirebaseAdminListener {
     private MainActivity mainActivity;
 
     public MainActivityEvents(MainActivity mainActivity){
