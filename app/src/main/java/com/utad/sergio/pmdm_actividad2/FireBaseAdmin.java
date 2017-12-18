@@ -5,4 +5,6 @@ package com.utad.sergio.pmdm_actividad2;
  */
 
 public class FireBaseAdmin {
+
 }
+
