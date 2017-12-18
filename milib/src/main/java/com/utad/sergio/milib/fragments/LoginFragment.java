@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.utad.sergio.milib.R;
 
@@ -14,7 +16,9 @@ import com.utad.sergio.milib.R;
  */
 public class LoginFragment extends Fragment {
 
-    public LoginFragmentEvents loginFragmentEvents;
+    public EditText etUsername, etPassword;
+    public Button btnLogin, btnRegister;
+    public LoginFragmentEvents events;
     public LoginFragmentListener loginFragmentListener;
 
     public LoginFragment() {
@@ -25,7 +29,17 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View v = inflater.inflate(R.layout.fragment_login, container, false);
+        etUsername=v.findViewById(R.id.etUsername);
+        etPassword=v.findViewById(R.id.etPassword);
+        btnLogin=v.findViewById(R.id.btnLogin);
+        btnRegister=v.findViewById(R.id.btnRegister);
+        events=new LoginFragmentEvents(this);
+        btnRegister.setOnClickListener(events);
+        btnLogin.setOnClickListener(events);
+
+
+        return v;
     }
 
     public void setLoginFragmentListener(LoginFragmentListener loginFragmentListener) {
@@ -35,6 +49,12 @@ public class LoginFragment extends Fragment {
 }
 
 class LoginFragmentEvents implements View.OnClickListener {
+
+    private LoginFragment loginFragment;
+
+    public LoginFragmentEvents(LoginFragment fragment) {
+        this.loginFragment=fragment;
+    }
 
     @Override
     public void onClick(View view) {
