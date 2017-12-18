@@ -2,6 +2,7 @@ package com.utad.sergio.pmdm_actividad2;
 
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.utad.sergio.milib.fragments.MeFragment;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         loginFragment.setLoginFragmentListener(mainActivityEvents);
         registerFragment.setRegisterFragmentListener(mainActivityEvents);
 
-        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.show(loginFragment);
         transaction.hide(registerFragment);
         transaction.hide(meFragment);
@@ -57,7 +58,11 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
     // Transaction Login -> Register
     @Override
     public void loginFragmentRegBtnClicked() {
-
+        FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+        transaction.hide(mainActivity.loginFragment);
+        transaction.show(mainActivity.registerFragment);
+        transaction.hide(mainActivity.meFragment);
+        transaction.commit();
     }
 
     // Register & Login Firebase
@@ -69,7 +74,11 @@ class MainActivityEvents implements LoginFragmentListener,RegisterFragmentListen
     // Transaction Register -> Login (return)
     @Override
     public void regFragmentBtnCancelClicked() {
-
+        FragmentTransaction transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+        transaction.show(mainActivity.loginFragment);
+        transaction.hide(mainActivity.registerFragment);
+        transaction.hide(mainActivity.meFragment);
+        transaction.commit();
     }
 }
 
